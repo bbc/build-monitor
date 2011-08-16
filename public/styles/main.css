@@ -1,0 +1,55 @@
+*{
+  border: 0;
+  margin: 0;
+  font: inherit;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 90px;
+  line-height: 90px;
+  letter-spacing: -0.045em;
+  colour: #333;
+  background: black;
+  text-transform: uppercase;
+  font-weight: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+div {
+  display: block;
+  overflow: hidden;
+}
+
+#container {
+  position: relative;
+  top: 50%;
+  margin-top: -180px;
+}
+
+.job {
+
+}
+
+.blue {
+  color: #333;
+}
+
+.red {
+  font-size: 135px;
+  line-height: 135px;
+  color: red;
+  font-weight: bold;
+}
+
+.blue_anime {
+  color: #333;
+  overflow-x: -webkit-marquee;
+  -webkit-marquee-style: slide;
+  -webkit-marquee-direction: left;
+  -webkit-marquee-speed: fast;
+}
