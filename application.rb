@@ -1,3 +1,8 @@
+unless File.exist?("certificate.pem")
+  puts "Certificate file needs to be put in this directory and should be named 'certificate.pem'"
+  exit(1)
+end
+
 require "json"
 require "sinatra"
 
