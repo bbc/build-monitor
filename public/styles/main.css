@@ -46,7 +46,7 @@ div {
   font-weight: bold;
 }
 
-.blue_anime {
+.blue_anime, .red_anime {
   color: #333;
   overflow-x: -webkit-marquee;
   -webkit-marquee-style: slide;
