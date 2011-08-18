@@ -1,2 +1,3 @@
-sinatra
-haml
+gem "sinatra"
+gem "haml"
+gem "json"
