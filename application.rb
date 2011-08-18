@@ -22,14 +22,9 @@ get "/" do
 
   curl = "curl #{url} --cert certificate.pem --insecure"
   curl << " -x #{ENV['http_proxy']}" if (ENV["http_proxy"])
-
-  puts curl
-  
   response = `#{curl}`
  
-  puts response
-
-  begin  
+  begin
     json = JSON.parse(response)
     jobs = json["jobs"].map do |job|
       HudsonJob.new(job["name"], job["color"])
