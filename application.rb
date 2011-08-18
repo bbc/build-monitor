@@ -1,4 +1,3 @@
-
 unless File.exist?("certificate.pem")
   puts "Certificate file needs to be put in this directory and should be named 'certificate.pem'"
   exit(1)
@@ -7,7 +6,7 @@ end
 unless File.exist?("configuration.rb")
   puts "Configuration file does not exist. It should be called 'configuration.rb' and should contain the following contents:"
   puts <<-CONFIG
-  set :hudson, "https://ci-pal.int.bbc.co.uk/hudson/"
+  set :hudson, "https://your_server/hudson"
   set :project, "News"
   CONFIG
 end
@@ -22,19 +21,20 @@ get "/" do
 
   curl = "curl #{url} --cert certificate.pem --insecure"
   curl << " -x #{ENV['http_proxy']}" if (ENV["http_proxy"])
-  response = `#{curl}`
- 
-  begin
-    json = JSON.parse(response)
-    jobs = json["jobs"].map do |job|
+  json = `#{curl}`
+
+  jobs = get_jobs_from_json json
+  haml :index, :locals => {:jobs => jobs}
+end
+
+def get_jobs_from_json json
+  json = JSON.parse(json) rescue nil
+  jobs = nil
+  if json
+    json["jobs"].map do |job|
       HudsonJob.new(job["name"], job["color"])
     end
-    haml :index, :locals => {:jobs => jobs}
-  rescue  
-    haml :json_error
   end
-  
-
 end
 
 class HudsonJob
@@ -44,4 +44,3 @@ class HudsonJob
     @color = color
   end
 end
-

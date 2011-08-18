@@ -1,4 +1,5 @@
 %div#container
-  - jobs.each do |job|
-    %div.job{:class => job.color}
-      %h1= job.name
+  - if jobs
+    - jobs.each do |job|
+      %div.job{:class => job.color}
+        %h1= job.name
