@@ -24,7 +24,7 @@ get "/" do
   json = `#{curl}`
 
   jobs = get_jobs_from_json json
-  haml :index, :locals => {:jobs => jobs}
+  haml :index, :locals => {:jobs => jobs, :settings => settings}
 end
 
 def get_jobs_from_json json

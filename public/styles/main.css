@@ -25,6 +25,16 @@ div {
   overflow: hidden;
 }
 
+#hudson {
+    color: #999;
+    font-size: 30px;
+    text-align: right;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+    right: 2em;
+    position: fixed;
+}
+
 #container {
   position: relative;
   top: 50%;
