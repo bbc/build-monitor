@@ -12,24 +12,30 @@ unless File.exist?("configuration.rb")
   # if behind a proxy server
   set :proxy_address, "your_proxy_address"
   set :proxy_port, 80
+  
+  # .pem file path, name and extension
+  set :certificate_pathname, "certificate.pem"
   CONFIG
 end
 
+require 'net/http'
+require 'net/https'
+require 'openssl'
 require "json"
 require "sinatra"
 require "haml"
+
 require File.join(File.dirname(__FILE__), "configuration")
 
 get "/" do
-  url = "#{settings.hudson}/view/#{settings.project}/api/json"
-
+  uri = URI("#{settings.hudson}/view/#{settings.project}/api/json")
   if settings.respond_to? :proxy_address
     http = Net::HTTP::Proxy(settings.proxy_address, settings.proxy_port).new(uri.host, uri.port)
   else
     http = Net::HTTP.new(uri.host, uri.port)
   end
   
-  pem = File.read File.join(File.dirname(__FILE__), "certificate.pem")
+  pem = File.read(settings.certificate_pathname)
   http.use_ssl     = true
   http.cert        = OpenSSL::X509::Certificate.new pem
   http.key         = OpenSSL::PKey::RSA.new pem
