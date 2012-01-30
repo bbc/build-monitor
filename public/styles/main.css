@@ -6,8 +6,9 @@
 
 body {
   font-family: sans-serif;
-  font-size: 90px;
-  line-height: 90px;
+  font-size: 60px;
+  margin-left: 50px;
+  line-height: 60px;
   letter-spacing: -0.045em;
   colour: #333;
   background: black;
@@ -17,7 +18,7 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
+  width: 90	%;
 }
 
 div {
@@ -37,8 +38,7 @@ div {
 
 #container {
   position: relative;
-  top: 50%;
-  margin-top: -180px;
+  top: 50px;
 }
 
 .job {
@@ -49,9 +49,12 @@ div {
   color: #333;
 }
 
+.disabled {
+  color: #111;
+  text-decoration:line-through;
+}
+
 .red {
-  font-size: 120px;
-  line-height: 120px;
   color: red;
   font-weight: bold;
 }
